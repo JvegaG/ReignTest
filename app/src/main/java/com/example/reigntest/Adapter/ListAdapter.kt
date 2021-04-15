@@ -1,5 +1,6 @@
 package com.example.reigntest.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +12,13 @@ import com.example.reigntest.Service.HackerNews
 import java.util.*
 
 class ListAdapter(
-        val context: Context,
-        val data: List<HackerNews>,
-        val actualTime: Date
+    private val context: Context,
+    private val data: List<HackerNews>,
+    private val actualTime: Date
 ) : BaseAdapter() {
+
+    private val inflater: LayoutInflater =
+        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
 
     override fun getCount(): Int {
@@ -29,26 +33,25 @@ class ListAdapter(
         return position.toLong()
     }
 
+    @SuppressLint("ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        if (convertView == null) 
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_model, null)
 
+        val itemsView = inflater.inflate(R.layout.list_model, parent, false)
 
         val title: TextView = convertView!!.findViewById(R.id.txt_title)
         val authorTime: TextView = convertView!!.findViewById(R.id.txt_author_time)
 
         val new: HackerNews = data[position]
-
-        title.setText(new.hits[position].title?:new.hits[position].story_title)
+        title.setText(new.hits[position].title ?: new.hits[position].story_title)
 
         val authorTimeText = new.hits[position].author + " - " + getCreatedTime(new.hits[position].creaetd_at)
         authorTime.setText(authorTimeText)
 
-        return convertView
+        return itemsView
     }
 
-    fun getCreatedTime(createdDate: String?): String?{
-        var restTime: Date
-
+    fun getCreatedTime(createdDate: String?): String? {
+        var restTime: String? = null
+        return restTime
     }
 }
