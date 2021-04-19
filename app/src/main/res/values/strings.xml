@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ReignTest</string>
+
+    <string name="title">News Title</string>
+    <string name="author_time">author - 5m</string>
+    <string name="delete">Delete</string>
 </resources>

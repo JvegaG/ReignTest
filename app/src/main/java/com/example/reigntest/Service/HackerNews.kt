@@ -1,14 +1,16 @@
 package com.example.reigntest.Service
 
-class HackerNews(
-        val hits: ArrayList<HitNews>,
-        val nbHits: Int,
-        val page: Int,
-        val nbPages: Int,
-        val histsPerPAges: Int,
-        val exhaustiveNbHits: Boolean,
-        val query: String,
-        val params: String,
-        val ProcessingTimeMS: Int
+import com.google.gson.annotations.SerializedName
+
+data class HackerNews(
+        @SerializedName("hits") var hits: ArrayList<HitNews>,
+        @SerializedName("nbHits") var nbHits: Int,
+        @SerializedName("page") var page: Int,
+        @SerializedName("nbPAges") var nbPages: Int,
+        @SerializedName("hitsPerPage") var hitsPerPAges: Int,
+        @SerializedName("exhaustiveNbHits") var exhaustiveNbHits: Boolean,
+        @SerializedName("query") var query: String,
+        @SerializedName("params") var params: String,
+        @SerializedName("processingTimeMS") var processingTimeMS: Int
 ) {
 }
