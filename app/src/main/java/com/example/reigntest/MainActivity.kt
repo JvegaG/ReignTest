@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
                 setupObservers()
             } else {
                 Toast.makeText(applicationContext, "No Network Connection", Toast.LENGTH_LONG).show()
+                swipeRefresh.isRefreshing = false
             }
         }
 
