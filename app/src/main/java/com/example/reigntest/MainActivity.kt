@@ -44,6 +44,13 @@ class MainActivity : AppCompatActivity() {
         swipeRefresh = findViewById(R.id.refresh)
         swipeRefresh.setColorSchemeResources(R.color.purple_500)
 
+        val divider = DividerItemDecoration(
+            recycler.context,
+            LinearLayoutManager(applicationContext).orientation
+        )
+
+        recycler.addItemDecoration(divider)
+
         setUpViewModel()
         setUpUIRecycler()
         setupObservers()
@@ -72,13 +79,6 @@ class MainActivity : AppCompatActivity() {
         currentTime = LocalDateTime.now(ZoneOffset.UTC)
         recycler.layoutManager = LinearLayoutManager(applicationContext)
         adapter = RecyclerAdapter(applicationContext, arrayListOf(), currentTime)
-
-        val divider = DividerItemDecoration(
-            recycler.context,
-            LinearLayoutManager(applicationContext).orientation
-        )
-
-        recycler.addItemDecoration(divider)
         recycler.adapter = adapter
 
         ItemTouchHelper(object : ItemSwipe(0, ItemTouchHelper.LEFT) {
